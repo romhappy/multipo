@@ -18,7 +18,7 @@ def show_multiplications():
         multiplication_list.append(multiplication)
         show_result(result, multiplication)
         if len(multiplication_list) < 10:
-            root.after(1000, show_next_multiplication)
+            root.after(10000, show_next_multiplication)
         
     show_next_multiplication()
 
@@ -51,7 +51,7 @@ def print_results():
     label.pack(pady=20, padx=10)
 
     # Add a button to close the message box
-    button = tk.Button(msg_box, text="Close", command=msg_box.destroy)
+    button = tk.Button(msg_box, text="Fermer", command=msg_box.destroy)
     button.pack(pady=10)
 
 root = tk.Tk()
