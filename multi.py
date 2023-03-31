@@ -1,6 +1,7 @@
 import random
 import tkinter as tk
 import tkinter.messagebox as messagebox
+import time
 
 def generate_multiplication():
     num1 = random.randint(0, 10)
@@ -18,7 +19,7 @@ def show_multiplications():
         multiplication_list.append(multiplication)
         show_result(result, multiplication)
         if len(multiplication_list) < 10:
-            root.after(10000, show_next_multiplication)
+            root.after(1000, show_next_multiplication)
         
     show_next_multiplication()
 
@@ -26,6 +27,7 @@ def show_multiplications():
 def show_result(result, multiplication):
     result_list.append(result)
     if len(result_list) == 10:
+        time.sleep(3)
         print_results()
 
 
