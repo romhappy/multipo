@@ -1,80 +1,70 @@
 import random
-import time
+import tkinter as tk
+import tkinter.messagebox as messagebox
+
+def generate_multiplication():
+    num1 = random.randint(0, 10)
+    num2 = random.randint(0, 10)
+    result = num1 * num2
+    multiplication = str(num1) + " X " + str(num2)+" ="
+    label.config(text=multiplication)
+    root.update()
+    return result, multiplication
 
 
-number_1=random.randint(0,10)
-number_2=random.randint(0,10)
-result_1 = number_1*number_2
-print(str(number_1)+" X "+str(number_2))
+def show_multiplications():
+    def show_next_multiplication():
+        result, multiplication = generate_multiplication()
+        multiplication_list.append(multiplication)
+        show_result(result, multiplication)
+        if len(multiplication_list) < 10:
+            root.after(1000, show_next_multiplication)
+        
+    show_next_multiplication()
 
-time.sleep(3)   
 
-number_3=random.randint(0,10)
-number_4=random.randint(0,10)
-result_2 = number_3*number_4
-print(str(number_2)+" X "+str(number_3))
+def show_result(result, multiplication):
+    result_list.append(result)
+    if len(result_list) == 10:
+        print_results()
 
-time.sleep(3)  
 
-number_5=random.randint(0,10)
-number_6=random.randint(0,10)
-result_3 = number_5*number_6
-print(str(number_5)+" X "+str(number_6))
+def print_results():
+    print("Multiplication\tResult")
+    for multiplication, result in zip(multiplication_list, result_list):
+        print(f"{multiplication}\t\t{result}")
 
-time.sleep(3)  
+def print_results():
+    results = []
+    for multiplication, result in zip(multiplication_list, result_list):
+        results.append(f"{multiplication}\t\t{result}")
+    result_str = "\n".join(results)
 
-number_7=random.randint(0,10)
-number_8=random.randint(0,10)
-result_4 = number_7*number_8
-print(str(number_7)+" X "+str(number_8))
+    # Create a new top-level window for the message box
+    msg_box = tk.Toplevel(root)
+    msg_box.title("Résultats")
+    msg_box.attributes('-fullscreen', True)
+    msg_box.geometry("800x600")
 
-time.sleep(3)  
+    # Create a label widget to display the results
+    label = tk.Label(msg_box, text=result_str, font=("Arial", 40), justify="left")
+    label.pack(pady=20, padx=10)
 
-number_9=random.randint(0,10)
-number_10=random.randint(0,10)
-result_5 = number_9*number_10
-print(str(number_9)+" X "+str(number_10))
+    # Add a button to close the message box
+    button = tk.Button(msg_box, text="Close", command=msg_box.destroy)
+    button.pack(pady=10)
 
-time.sleep(3)  
+root = tk.Tk()
+root.title("Multiplication Generator")
+root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 
-number_11=random.randint(0,10)
-number_12=random.randint(0,10)
-result_6 = number_11*number_12
-print(str(number_11)+" X "+str(number_12))
+label = tk.Label(root, font=("Arial", 100))
+label.pack(pady=20)
 
-time.sleep(3)  
+button = tk.Button(root, text="C'est parti pour les multiplication!", command=show_multiplications)
+button.pack(pady=10)
 
-number_13=random.randint(0,10)
-number_14=random.randint(0,10)
-result_7 = number_13*number_14
-print(str(number_13)+" X "+str(number_14))
+multiplication_list = []
+result_list = []
 
-time.sleep(3)  
-
-number_15=random.randint(0,10)
-number_16=random.randint(0,10)
-result_8 = number_15*number_16
-print(str(number_15)+" X "+str(number_16))
-
-time.sleep(3)  
-
-number_17=random.randint(0,10)
-number_18=random.randint(0,10)
-result_9 = number_17*number_18
-print(str(number_17)+" X "+str(number_18))
-
-time.sleep(3)  
-
-number_19=random.randint(0,10)
-number_20=random.randint(0,10)
-result_10 = number_19*number_20
-print(str(number_19)+" X "+str(number_20))
-
-time.sleep(3)  
-
-print("Et voici les résultats!")
-
-time.sleep(3)  
-
-print(result_1,result_2,result_3,result_4,result_5,result_6,result_7,result_8,result_9,result_10)
-
+root.mainloop()
