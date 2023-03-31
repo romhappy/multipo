@@ -61,7 +61,7 @@ root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenhe
 label = tk.Label(root, font=("Arial", 100))
 label.pack(pady=20)
 
-button = tk.Button(root, text="C'est parti pour les multiplication!", command=show_multiplications)
+button = tk.Button(root, text="C'est parti pour les multiplications!", command=show_multiplications)
 button.pack(pady=10)
 
 multiplication_list = []
